@@ -65,9 +65,6 @@ querySnapshot.forEach((document) => {
 
 window.modifierCompteur = async function(id, valeur) {
 
-    if (valeur === -1 && document.getElementById(id).innerText <= 0) {
-        return;
-    }
 
     const personneRef = doc(db, "people", id);
 
