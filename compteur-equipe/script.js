@@ -1,6 +1,10 @@
 // Import Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { 
+  collection, 
+  getDocs 
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 // Configuration Firebase
 const firebaseConfig = {
@@ -19,3 +23,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 console.log("Firebase connecté !");
+
+const querySnapshot = await getDocs(collection(db, "people"));
+
+querySnapshot.forEach((doc) => {
+    console.log(doc.id, doc.data());
+});
