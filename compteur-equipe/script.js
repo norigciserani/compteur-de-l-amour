@@ -24,8 +24,22 @@ const db = getFirestore(app);
 
 console.log("Firebase connecté !");
 
+const zoneCompteurs = document.getElementById("compteurs");
+
 const querySnapshot = await getDocs(collection(db, "people"));
 
+zoneCompteurs.innerHTML = "";
+
+
 querySnapshot.forEach((doc) => {
-    console.log(doc.id, doc.data());
+
+    const personne = doc.data();
+
+    zoneCompteurs.innerHTML += `
+        <div>
+            <h2>${personne.name}</h2>
+            <p>Compteur : ${personne.count}</p>
+        </div>
+    `;
+
 });
