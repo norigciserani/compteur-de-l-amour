@@ -48,13 +48,15 @@ querySnapshot.forEach((document) => {
                 ${personne.count}
             </div>
 
-            <button onclick="modifierCompteur('${document.id}', -1)">
-                -1
-            </button>
+            <div class="actions">
+                <button class="secondary" onclick="modifierCompteur('${document.id}', -1)">
+                    -1
+                </button>
 
-            <button onclick="modifierCompteur('${document.id}', 1)">
-                +1
-            </button>
+                <button class="primary" onclick="modifierCompteur('${document.id}', 1)">
+                    +1
+                </button>
+            </div>
 
         </div>
 
