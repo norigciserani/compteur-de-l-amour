@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+#compteurs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.carte {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 180px;
+    border-radius: 10px;
+}
+
+
+.compteur {
+    font-size: 40px;
+    margin: 15px;
+}
+
+
+button {
+    font-size: 20px;
+    padding: 10px 15px;
+    margin: 5px;
+}

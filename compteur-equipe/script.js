@@ -1,9 +1,12 @@
 // Import Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 import { 
-  collection, 
-  getDocs 
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    updateDoc,
+    increment
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 // Configuration Firebase
@@ -31,15 +34,43 @@ const querySnapshot = await getDocs(collection(db, "people"));
 zoneCompteurs.innerHTML = "";
 
 
-querySnapshot.forEach((doc) => {
+querySnapshot.forEach((document) => {
 
-    const personne = doc.data();
+    const personne = document.data();
 
     zoneCompteurs.innerHTML += `
-        <div>
+
+        <div class="carte">
+
             <h2>${personne.name}</h2>
-            <p>Compteur : ${personne.count}</p>
+
+            <div class="compteur">
+                ${personne.count}
+            </div>
+
+            <button onclick="modifierCompteur('${document.id}', -1)">
+                -1
+            </button>
+
+            <button onclick="modifierCompteur('${document.id}', 1)">
+                +1
+            </button>
+
         </div>
+
     `;
 
 });
+
+
+window.modifierCompteur = async function(id, valeur) {
+
+    const personneRef = doc(db, "people", id);
+
+    await updateDoc(personneRef, {
+        count: increment(valeur)
+    });
+
+    location.reload();
+
+};
